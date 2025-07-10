@@ -1,0 +1,16 @@
+{
+    "ja3_hash": "773906b0efdefa24a7f2b8eb6985bf37",
+    "ja4_hash": "t13i2012h1_1e948f1242c7_d9433a03ec64",
+    "ja4h_hash": "ge11cn060000_4e59edc1297a_4da5efaf0cbd",
+    "ja4l_hash": "5191_42_45014",
+    "get_header_signature": "1a93b037806d72961f17aa649841b9cbb70f1281428e3235128b9e24cde69fe5",
+    "post_header_signature": "953eea58fdd34dfe4f0760f131a78cab9abdcab2800a5c5569eb418e01d97c7e",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3.1 Mobile/15E148 Safari/604.1",
+    "accept": "*/*",
+    "accept_encoding": "gzip, deflate, br",
+    "accept_language": "en-US,en;q=0.9",
+    "connection": "keep-alive",
+    "content_length": "384",
+    "host": "api.devtest.com",
+    "source_ipv4": "172.16.0.1"
+}

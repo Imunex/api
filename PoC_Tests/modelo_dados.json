@@ -1,0 +1,119 @@
+
+Device 
+
+{
+  "device_id": "01",
+  "login_email": "user01@client01.com",
+  "ja3_hash": "ed02bd03b59cac2fc3abc09026905359",
+  "ja4_hash": "t13i1513h1_2a423a3900a9_774cf55bcd28",
+  "fingerprint_ja3": "771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,13-65281-27-51-43-45-10-0-17513-35-18-23-11-16-65037-5,29-23-24,0",
+  "fingerprint_ja4": "t13i1513h1_00047,00053,00156,00157,04865,04866,04867,49171,49172,49195,49196,49199,49200,52392,52393_00005,00010,00011,00013,00016,00018,00021,00023,00035,00043,00045,00051,65281",
+  "ciphers": "TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,ECDHE-ECDSA-AES128-GCM-SHA256,ECDHE-RSA-AES128-GCM-SHA256,ECDHE-ECDSA-AES256-GCM-SHA384,ECDHE-RSA-AES256-GCM-SHA384,ECDHE-ECDSA-CHACHA20-POLY1305,ECDHE-RSA-CHACHA20-POLY1305,ECDHE-RSA-AES128-SHA,ECDHE-RSA-AES256-SHA,AES128-GCM-SHA256,AES256-GCM-SHA384,AES128-SHA,AES256-SHA",
+  "curves": "001D:0017:0018",
+  "protocol": "TLSv1.3",
+  "get_header_signature": "1a93b037806d72961f17aa649841b9cbb70f1281428e3235128b9e24cde69fe5",
+  "post_header_signature": "953eea58fdd34dfe4f0760f131a78cab9abdcab2800a5c5569eb418e01d97c7e",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0",
+  "accept": "*/*",
+  "accept_encoding": "gzip, deflate, br",
+  "accept_language": "en-US,en;q=0.9",
+  "connection": "keep-alive",
+  "content-length": "384",
+  "host": "api.devtest.com",
+  "source_ipv4": "172.16.0.1",
+  "source_ipv6": "b807:f40c:ded8:2d14:0f43:108e:0f63:2c94",
+  "verified": "true",
+  "verified_date_created": "2024-02-01T12:34:56.789Z",
+  "verified_date_changed": "2024-02-01T12:34:56.789Z",
+  "verified_count": "1",  
+  "active": "yes",
+  "customer": "client01.com",
+  "user_date_created": "2024-02-01T12:34:56.789Z",
+  "user_date_changed": "2024-02-01T12:34:56.789Z",
+  "device_score": "0.849",
+  "device_auth_failed_count": "1",
+  "last_device_failed_date": "2024-02-01T12:34:56.789Z",
+  "last_device_failed_ip_addr_v4": "",
+  "last_device_failed_ip_addr_v6": ""
+}
+
+
+Customer
+
+{
+  "customer_id": "01",
+  "customer_name": "App Banco",
+  "customer_domain": "client01.com",
+  "customer_date_created": "",
+  "customer_date_changed": "",
+  "customer_devices": "10000",
+  "customer_devices_per_user": "3",
+  "customer_plan": "Plan01",
+  "customer_login": "",
+  "customer_password": "",
+  "customer_mfa": "",
+  "customer_tech_contact": "suporte@appbanco.com",
+  "customer_soc_contact": "soc@appbanco.com",
+  "customer_abuse_contact": "abuse@appbanco.com",
+  "customer_api_addr": "api.appbanco.com",
+  "customer_api_key": "as130fjasojf1093udf2sncpc19203jc1032vdfb",
+  "customer_api_secret": "sd987v30294hv09usdv-=-2-39jv!@ef09z.34%",
+  "active": "yes",
+  "customer_date_created": "2024-02-01T12:34:56.789Z",
+  "customer_date_changed": "2024-02-01T12:34:56.789Z"
+}
+
+
+weights = {
+  "ja3_hash": 0.46941,
+  "ja4_hash": 0.51153,
+  "get_header_signature": 0.25590,
+  "post_header_signature": 0.26735,
+  "source_ipv4": 0.13924,
+  "source_ipv6": 0.12932,
+  "content-length": 0.32451,
+}
+
+
+
+
+Exemplo de log da API: 
+
+[2024-02-01T12:34:56.789Z] INFO: Request from 172.16.0.1: device_id '01' successfully created.
+
+[2024-02-01T12:34:56.789Z] INFO: Request from 172.16.0.1: device_id '01' verification code sent to customer API 'customer_api_addr'.
+
+[2024-02-01T12:34:56.789Z] INFO: Request from 172.16.0.1: device_id '01' verification code '****12345' call back received by source_ipv4 '' / source_ipv6 ''.
+
+[2024-02-01T12:34:56.789Z] INFO: Request from 172.16.0.1: device_id '01' successfully verified.
+
+[2024-02-01T12:34:56.789Z] ERROR: Request from 172.16.0.1: device_id '01' verification code '****12345' expired.
+
+[2024-02-01T12:34:56.789Z] OK: Request from 172.16.0.1: device_id '01' successfully authenticated by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.9250'. 
+
+[2024-02-01T12:34:56.789Z] WARNING: Request from 172.16.0.1: device_id '01' failed to authenticated by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.9250'. 
+
+[2024-02-01T12:34:56.789Z] ERROR: Request from 172.16.0.1: device_id '01' failed to authenticate by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.4250': Count: '1'. 
+
+[2024-02-01T12:34:56.789Z] ERROR: Request from 172.16.0.1: device_id '01' failed to authenticate by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.4250': Count: '2'. 
+
+[2024-02-01T12:34:56.789Z] CRITICAL: Request from 172.16.0.1: device_id '01' failed to authenticate by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.4250': Count: '3'.
+
+[2024-02-01T12:34:56.789Z] BLOCKED: Request from 172.16.0.1: device_id '01' blocked due to authentication failed MaxCount limit reached by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.4250': MaxCount: '3' reached.
+
+[2024-02-01T12:34:58.683Z] BLOCKED: Request from 172.16.0.1: device_id '01' blocked due to authentication failed MaxCount limit reached by source_ipv4 '' / source_ipv6 '': Reason: device_score '0.4250': MaxCount: '3' reached.
+
+
+Exemplo de log do frontend (admin): 
+
+
+[2024-02-01T12:45:00.123Z] INFO: Request from 192.168.1.100: customer_id '01' accessed /dashboard.
+
+[2024-02-01T12:45:00.123Z] INFO: Request from 192.168.1.100: customer_id '01' accessed /dashboard/viewdevices.
+
+[2024-02-01T12:45:00.123Z] INFO: Request from 192.168.1.100: customer_id '01' deleted device_id '01'.
+
+[2024-02-01T12:34:56.789Z] INFO: Request from 192.168.1.100: customer 'aapbanco.com' successfully created by admin user 'admin'.
+
+
+
