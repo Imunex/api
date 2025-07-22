@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: phjt99/device-protect-nginx
+    build:
+      context: .
+      dockerfile: ./infrastructure/nginx/Dockerfile
+    restart: always
+    privileged: true
+    platform: linux/amd64
+    volumes:
+      - ./infrastructure/nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./staticfiles/:/var/www/html/static/:rw
+          # ssl
+      - ./infrastructure/nginx/rapidssl/_.imunex.ai.crt:/etc/nginx/conf/server.crt:ro
+      - ./infrastructure/nginx/rapidssl/chaveprivada.key:/etc/nginx/conf/server.key:ro
+      - ./infrastructure/nginx/global.pass:/etc/nginx/conf/global.pass:ro
+    ports:
+      - "${NGINX_PORT:-80}:80" # Uses 8080 if NGINX_PORT is not set
+      - 443:443
+      - 5000:5000
+    environment:
+      - NGINX_PORT
+    env_file:
+      - ./.env
+    depends_on:
+      - web
+
+  redis:
+    image: redis:latest
+    restart: always
+    expose:
+      - 6379
+
+  celery:
+    image: phjt99/device-protect
+    build:
+      context: .
+      dockerfile: ./infrastructure/Dockerfile
+    command: celery -A deviceprotect worker --loglevel=info -c 2 --concurrency=2
+    depends_on:
+      - redis
+      - web
+
+  celery-beat:
+    image: phjt99/device-protect
+    build:
+      context: .
+      dockerfile: ./infrastructure/Dockerfile
+    command: celery -A deviceprotect beat --loglevel=info
+    depends_on:
+      - redis
+      - web
+
+  web:
+    restart: always
+    image: phjt99/device-protect
+    build:
+      context: .
+      dockerfile: ./infrastructure/Dockerfile
+    platform: linux/amd64
+    # '/start' is the shell script used to run the service
+    command: /start
+    # this volume is used to map the files and folders on the host to the container
+    # so if we change code on the host, code in the docker container will also be changed
+    volumes:
+      - .:/app
+    # env_file is used to manage the env variables of our project
+    env_file:
+      - ./.env
+    ports:
+      - 8000:8000
+    
+  flower:
+    image: phjt99/device-protect
+    build:
+      context: .
+      dockerfile: ./infrastructure/Dockerfile
+    command:  celery --broker=redis://redis:6379/0 flower --loglevel=debug
+    ports:
+      - "5555:5555"
+    depends_on:
+      - redis
+      - celery
+  
+  
